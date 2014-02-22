@@ -60,7 +60,7 @@ function decorate (req, res, config) {
   // production https can only be https ever.
   if (config.https && env === 'production') {
     res.setHeader('strict-transport-security',
-                  1000 * 60 * 60 * 24 * 30 + '')
+                  'max-age=' + (1000 * 60 * 60 * 24 * 30))
   }
 
   res.setHeader = function (orig) { return function () {
