@@ -247,7 +247,7 @@ function lookupUserByUsername (name, req, res) {
     config.redis.client.hmset(key, data, function (er) {
       if (er)
         return res.error(er)
-      var u = 'https://' + req.headers.host + '/forgot/' + encodeURIComponent(token)
+      var u = 'https://' + config.host + '/forgot/' + encodeURIComponent(token)
       var mail =
           { to: '"' + name + '" <' + email + '>'
           , from: 'user-account-bot@npmjs.org'
