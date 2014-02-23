@@ -75,6 +75,11 @@ router.addRoute('/', function (req, res) {
   return require('./routes/index.js')(req, res)
 })
 
+// The package redirect shortcuts
+var packageRedirect = require('./routes/package-redirect.js')
+router.addRoute('/package/:name/:type(repo)', packageRedirect)
+router.addRoute('/package/:name/:type(homepage)', packageRedirect)
+
 // The package details page
 var packagePage = require('./routes/package-page.js')
 router.addRoute('/package/:name/:version', packagePage)
