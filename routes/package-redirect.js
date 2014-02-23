@@ -17,10 +17,18 @@ function packageRedirect (req, res) {
     // and we are not getting a valid http error code in that case
     if (m.package.error === 'not_found') return res.error(404)
 
+    if (type === 'homepage') return handleHomepage(req, res, m)
     if (type === 'repo') return handleRepo(req, res, m)
 
     res.error(404)
   })
+}
+
+function handleHomepage (req, res, m) {
+  var p = m.package
+
+  if (p.homepage) return res.redirect(p.homepage)
+  res.redirect('/package/' + p.name)
 }
 
 function handleRepo (req, res, m) {
